@@ -65,10 +65,6 @@ class TextMessage(Text):
                     "<b>The message was edited only in your chat.</b> "
                     "To send an edited message, send it as a new message."
                 ),
-                "source": (
-                    "Source code available at "
-                    "<a href=\"https://github.com/nessshon/support-bot\">GitHub</a>"
-                ),
                 "user_started_bot": (
                     f"User {hbold('{name}')} started the bot!\n\n"
                     "List of available commands:\n\n"
@@ -118,10 +114,6 @@ class TextMessage(Text):
                 "message_edited": (
                     "<b>تم تعديل الرسالة في محادثتك فقط.</b> "
                     "لإرسال الرسالة المعدلة، أرسلها كرسالة جديدة."
-                ),
-                "source": (
-                    "الكود المصدري متاح على "
-                    "<a href=\"https://github.com/nessshon/support-bot\">GitHub</a>"
                 ),
                 "user_started_bot": (
                     f"المستخدم {hbold('{name}')} بدأ البوت!\n\n"
