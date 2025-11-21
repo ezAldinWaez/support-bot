@@ -22,11 +22,9 @@ async def setup(bot: Bot, config: Config) -> None:
     commands = {
         "en": [
             BotCommand(command="start", description="Restart bot"),
-            BotCommand(command="source", description="Source code"),
         ],
-        "ru": [
-            BotCommand(command="start", description="Перезапустить бота"),
-            BotCommand(command="source", description="Исходники бота"),
+        "ar": [
+            BotCommand(command="start", description="إعادة تشغيل البوت"),
         ]
     }
 
@@ -35,8 +33,8 @@ async def setup(bot: Bot, config: Config) -> None:
         commands["en"].append(
             BotCommand(command="language", description="Change language"),
         )
-        commands["ru"].append(
-            BotCommand(command="language", description="Изменить язык"),
+        commands["ar"].append(
+            BotCommand(command="language", description="تغيير اللغة"),
         )
 
     group_commands = {
@@ -45,10 +43,10 @@ async def setup(bot: Bot, config: Config) -> None:
             BotCommand(command="silent", description="Activate/Deactivate silent Mode"),
             BotCommand(command="information", description="User information"),
         ],
-        "ru": [
-            BotCommand(command="ban", description="Заблокировать/Разблокировать пользователя"),
-            BotCommand(command="silent", description="Активировать/Деактивировать тихий режим"),
-            BotCommand(command="information", description="Информация о пользователе"),
+        "ar": [
+            BotCommand(command="ban", description="حظر/إلغاء حظر مستخدم"),
+            BotCommand(command="silent", description="تفعيل/إلغاء الوضع الصامت"),
+            BotCommand(command="information", description="معلومات المستخدم"),
         ]
     }
 
@@ -56,9 +54,9 @@ async def setup(bot: Bot, config: Config) -> None:
         "en":
             commands["en"].copy() +
             [BotCommand(command="newsletter", description="Newsletter menu")],
-        "ru":
-            commands["ru"].copy() +
-            [BotCommand(command="newsletter", description="Меню рассылки")],
+        "ar":
+            commands["ar"].copy() +
+            [BotCommand(command="newsletter", description="قائمة النشرة")],
     }
 
     try:
@@ -67,11 +65,11 @@ async def setup(bot: Bot, config: Config) -> None:
             commands=admin_commands["en"],
             scope=BotCommandScopeChat(chat_id=config.bot.DEV_ID),
         )
-        # Set commands for dev or admin in Russian language
+        # Set commands for dev or admin in Arabic language
         await bot.set_my_commands(
-            commands=admin_commands["ru"],
+            commands=admin_commands["ar"],
             scope=BotCommandScopeChat(chat_id=config.bot.DEV_ID),
-            language_code="ru",
+            language_code="ar",
         )
     except TelegramBadRequest:
         raise ValueError(f"Chat with DEV_ID {config.bot.DEV_ID} not found.")
@@ -81,22 +79,22 @@ async def setup(bot: Bot, config: Config) -> None:
         commands=commands["en"],
         scope=BotCommandScopeAllPrivateChats(),
     )
-    # Set commands for all private chats in Russian language
+    # Set commands for all private chats in Arabic language
     await bot.set_my_commands(
-        commands=commands["ru"],
+        commands=commands["ar"],
         scope=BotCommandScopeAllPrivateChats(),
-        language_code="ru",
+        language_code="ar",
     )
     # Set commands for all group chats in English language
     await bot.set_my_commands(
         commands=group_commands["en"],
         scope=BotCommandScopeAllGroupChats(),
     )
-    # Set commands for all group chats in Russian language
+    # Set commands for all group chats in Arabic language
     await bot.set_my_commands(
-        commands=group_commands["ru"],
+        commands=group_commands["ar"],
         scope=BotCommandScopeAllGroupChats(),
-        language_code="ru"
+        language_code="ar"
     )
 
 
@@ -113,10 +111,10 @@ async def delete(bot: Bot, config: Config) -> None:
         await bot.delete_my_commands(
             scope=BotCommandScopeChat(chat_id=config.bot.DEV_ID),
         )
-        # Delete commands for dev or admin in Russian language
+        # Delete commands for dev or admin in Arabic language
         await bot.delete_my_commands(
             scope=BotCommandScopeChat(chat_id=config.bot.DEV_ID),
-            language_code="ru",
+            language_code="ar",
         )
     except TelegramBadRequest:
         raise ValueError(f"Chat with DEV_ID {config.bot.DEV_ID} not found.")
@@ -125,17 +123,17 @@ async def delete(bot: Bot, config: Config) -> None:
     await bot.delete_my_commands(
         scope=BotCommandScopeAllPrivateChats(),
     )
-    # Delete commands for all private chats in Russian language
+    # Delete commands for all private chats in Arabic language
     await bot.delete_my_commands(
         scope=BotCommandScopeAllPrivateChats(),
-        language_code="ru",
+        language_code="ar",
     )
     # Delete commands for all group chats in any language
     await bot.delete_my_commands(
         scope=BotCommandScopeAllGroupChats(),
     )
-    # Delete commands for all group chats in Russian language
+    # Delete commands for all group chats in Arabic language
     await bot.delete_my_commands(
         scope=BotCommandScopeAllGroupChats(),
-        language_code="ru",
+        language_code="ar",
     )
